@@ -6,7 +6,7 @@ import androidx.room.Query
 import androidx.room.Update
 
 
-class TodoDAO() {
+interface TodoDAO{
 
     @Update
     fun updateTodo(todo: TodoEntity) {}
