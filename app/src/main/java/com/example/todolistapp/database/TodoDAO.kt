@@ -1,27 +1,20 @@
 package com.example.todolistapp.database
 
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 
-
+@Dao
 interface TodoDAO{
 
     @Update
-    fun updateTodo(todo: TodoEntity) {}
+    suspend fun updateTodo(todo: TodoEntity) {}
 
-
-    @Insert
-    fun InsertTodo(todo: TodoEntity) {}
-
-
-
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
+    suspend fun insertTodo(todo: TodoEntity) {}
 
     @Delete
-    fun deleteTodo() {}
+    suspend fun deleteTodo(todo: TodoEntity) {}
 
     @Query("SELECT * FROM todo_table")
-    fun getAllTodos() {}
+    fun getAllTodos(): List<TodoEntity>
 
 }
