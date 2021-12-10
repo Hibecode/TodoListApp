@@ -9,7 +9,7 @@ import androidx.room.RoomDatabase
 @Database(entities = [TodoEntity::class], version = 1 ,exportSchema = false)
 abstract class TodoDatabase(): RoomDatabase() {
 
-    abstract val TodoDBDao : TodoDAO
+    abstract val todoDBDao : TodoDAO
 
     companion object {
 
