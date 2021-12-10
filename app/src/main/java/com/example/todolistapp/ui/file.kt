@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
 import com.example.todolistapp.database.TodoEntity
@@ -35,6 +36,18 @@ class TodoAdapter(private var Todos: MutableList<TodoEntity>): RecyclerView.Adap
             todoText.text = todoItem.title
             todoCheckBox.isChecked = todoItem.isChecked
         }
+    }
+
+
+    class TodoDiffCallback(): DiffUtil.ItemCallback<TodoEntity>() {
+        override fun areItemsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
+            return oldItem == newItem
+        }
+
     }
 
 
