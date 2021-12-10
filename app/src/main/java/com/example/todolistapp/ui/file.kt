@@ -7,11 +7,12 @@ import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
 import com.example.todolistapp.database.TodoEntity
 
-class TodoAdapter(private var Todos: MutableList<TodoEntity>): RecyclerView.Adapter<TodoAdapter.TodoViewHolder>() {
+class TodoAdapter(private var Todos: MutableList<TodoEntity>): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAdapter.TodoDiffCallback()) {
 
 
     inner class TodoViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -19,8 +20,6 @@ class TodoAdapter(private var Todos: MutableList<TodoEntity>): RecyclerView.Adap
         val todoCheckBox = view.findViewById<CheckBox>(R.id.todoCb)
         val todoDelete = view.findViewById<ImageView>(R.id.todoDel)
     }
-
-    override fun getItemCount() = Todos.size
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.todo_item_layout, parent, false)
@@ -30,7 +29,7 @@ class TodoAdapter(private var Todos: MutableList<TodoEntity>): RecyclerView.Adap
 
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
-        var todoItem = Todos[position]
+        var todoItem = getItem(position)
 
         holder.apply{
             todoText.text = todoItem.title
