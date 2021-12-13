@@ -8,10 +8,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.w3c.dom.Entity
 
-class TodoViewModel(private val repo: Repository): ViewModel() {
+class TodoViewModel(val repo: Repository): ViewModel() {
 
     fun getAllTodos() = repo.getTodos()
-
 
     fun deleteTodo(todo: TodoEntity) = viewModelScope.launch(Dispatchers.Main){
         repo.deleteTodo(todo)

@@ -9,6 +9,7 @@ import com.example.todolistapp.database.TodoEntity
 import com.example.todolistapp.ui.Repository
 import com.example.todolistapp.ui.TodoViewModel
 import com.example.todolistapp.ui.TodoViewModelFactory
+import kotlinx.android.synthetic.main.activity_main.*
 import java.util.EnumSet.of
 
 class MainActivity : AppCompatActivity() {
@@ -17,12 +18,21 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val database = TodoDatabase.getInstance(applicationContext)
+        val database = TodoDatabase.getInstance(this)
         val repository = Repository(database)
         val factory = TodoViewModelFactory(repository)
 
 
-        val viewModel = ViewModelProvider(this).get(TodoViewModel::class.java)
+        val viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
+
+
+        addbutton.setOnClickListener{
+            val newText = addeT.text.toString()
+            val check = false
+            val newTodo = TodoEntity(newText, check)
+            viewModel.insertTodo(newTodo)
+        }
+
 
 
     }

@@ -10,7 +10,7 @@ data class TodoEntity (
     var title: String = "Work",
 
     @ColumnInfo(name="is_Completed")
-    var isChecked: Boolean = false
+    var isChecked: Boolean?
 
 ){@PrimaryKey(autoGenerate = true)
 var id: Int = 1}
