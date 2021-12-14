@@ -1,5 +1,6 @@
 package com.example.todolistapp.database
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
 
 @Dao
@@ -15,6 +16,6 @@ interface TodoDAO{
     suspend fun deleteTodo(todo: TodoEntity) {}
 
     @Query("SELECT * FROM todo_table")
-    fun getAllTodos(): List<TodoEntity>
+    fun getAllTodos(): LiveData<List<TodoEntity>>
 
 }
