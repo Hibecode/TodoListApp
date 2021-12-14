@@ -37,21 +37,21 @@ class MainActivity : AppCompatActivity() {
         todorv.layoutManager = LinearLayoutManager(this)
         todorv.adapter = myAdapter
 
-        //val liste = listOf(TodoEntity("No1", false))
+        val listee = listOf(TodoEntity("No1", false))
 
         addbutton.setOnClickListener{
             val newText = addeT.text.toString()
             val check = false
-            val newTodo = TodoEntity(newText, check)
+            val newTodo = TodoEntity("rjgndrgn", check)
             viewModel.insertTodo(newTodo)
             val liste = listOf(newTodo)
             //myAdapter.differ.submitList(liste)
+            /*viewModel.getAllTodos().observe(this, Observer{ it?.let{
+
+                myAdapter.submitList(it) }
+            })*/
 
         }
-
-        viewModel.getAllTodos().observe(this, Observer{ todos: List<TodoEntity> ->
-            myAdapter.submitList(todos)
-        })
 
 
 

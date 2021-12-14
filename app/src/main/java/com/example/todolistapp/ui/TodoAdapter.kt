@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
 import com.example.todolistapp.database.TodoEntity
 
-class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAdapter.TodoDiffCallback()) {
+class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>() {
 
 
     inner class TodoViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -40,9 +40,9 @@ class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAda
         }
 
 
-        setOnClickListener {
+      /*  setOnClickListener {
             onItemClickListener?.let{ it(todoItem)}
-        }
+        }*/
 
 
     }
@@ -54,7 +54,7 @@ class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAda
     }*/
 
 
-    class TodoDiffCallback: DiffUtil.ItemCallback<TodoEntity>() {
+   /*class TodoDiffCallback: DiffUtil.ItemCallback<TodoEntity>() {
 
 
             override fun areItemsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
@@ -64,16 +64,26 @@ class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAda
             override fun areContentsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
                 return oldItem == newItem
             }
+    }*/
+
+    private val DiffCallBack = object:  DiffUtil.ItemCallback<TodoEntity>() {
 
 
+        override fun areItemsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
+            return oldItem.id == newItem.id
+        }
+
+        override fun areContentsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
+            return oldItem == newItem
+        }
     }
 
 
-    private var onItemClickListener: ((TodoEntity) -> Unit)? = null
+   /* private var onItemClickListener: ((TodoEntity) -> Unit)? = null
 
     fun setOnClickListener(listener: (TodoEntity) -> Unit) {
         onItemClickListener = listener
-    }
+    }*/
 
 
 
