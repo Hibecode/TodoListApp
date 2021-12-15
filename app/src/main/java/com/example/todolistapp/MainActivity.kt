@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val database = TodoDatabase.getInstance(this)
+        val database = TodoDatabase.getDatabase(this)
         val repository = Repository(database)
         val factory = TodoViewModelFactory(repository)
 
@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
         todorv.adapter = myAdapter
 
         val listee = mutableListOf<TodoEntity>(TodoEntity("No1", false), TodoEntity("No2", false))
+
+        viewModel.getAllTodos().observe(this, Observer{
+            myAdapter.submitList(it)
+        })
 
         addbutton.setOnClickListener{
             val newText = addeT.text.toString()
@@ -54,9 +58,9 @@ class MainActivity : AppCompatActivity() {
             })*/
 
 
-            viewModel.getAllTodos().observe(this, Observer{
+            /*viewModel.getAllTodos().observe(this, Observer{
                 myAdapter.submitList(it?.toMutableList())
-            })
+            })*/
 
             Toast.makeText(this, "PLEASE WORK!!", Toast.LENGTH_SHORT).show()
             /*listee.add(newTodo)
