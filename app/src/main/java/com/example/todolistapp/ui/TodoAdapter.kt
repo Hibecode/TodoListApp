@@ -66,6 +66,11 @@ class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAda
             }
     }
 
+
+    /*override fun submitList(list: MutableList<TodoEntity>?) {
+        super.submitList(list?.let{ArrayList<TodoEntity>(it)})
+    }*/
+
     /*private val DiffCallBack = object:  DiffUtil.ItemCallback<TodoEntity>() {
 
 

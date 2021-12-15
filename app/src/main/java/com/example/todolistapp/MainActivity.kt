@@ -38,25 +38,46 @@ class MainActivity : AppCompatActivity() {
         todorv.layoutManager = LinearLayoutManager(this)
         todorv.adapter = myAdapter
 
-        val listee = mutableListOf<TodoEntity>(TodoEntity("No1", false))
+        val listee = mutableListOf<TodoEntity>(TodoEntity("No1", false), TodoEntity("No2", false))
 
         addbutton.setOnClickListener{
             val newText = addeT.text.toString()
             val check = false
-            val newTodo = TodoEntity("rjgndrgn", check)
+            val newTodo = TodoEntity(newText, check)
             viewModel.insertTodo(newTodo)
-            Toast.makeText(this, "PLEASE WORK!!", Toast.LENGTH_LONG).show()
-            //val liste = listOf(newTodo)
-            //myAdapter.differ.submitList(liste)
+
             /*viewModel.getAllTodos().observe(this, Observer{
                 it?.let{
                     val newList: List<TodoEntity>
-                    myAdapter.submitList(it)
+                    myAdapter.submitList(it.toMutableList())
                 }
             })*/
+
+
+            viewModel.getAllTodos().observe(this, Observer{
+                myAdapter.submitList(it?.toMutableList())
+            })
+
+            Toast.makeText(this, "PLEASE WORK!!", Toast.LENGTH_SHORT).show()
+            /*listee.add(newTodo)
             myAdapter.submitList(listee)
+*/
+            //myAdapter.notifyItemInserted(myAdapter.currentList.size.plus(1))
+            /*myAdapter.currentList.add(TodoEntity("No5", false))
+            val newLip = myAdapter.currentList
+            myAdapter.submitList(newLip)*/
 
         }
+
+
+
+        testbutton.setOnClickListener{
+            val newText = addeT.text.toString()
+            val check = false
+            val newTodo = TodoEntity(newText, check)
+            listee.add(newTodo)
+        }
+
 
 
         fun updateList(List: MutableList<TodoEntity>?) {
