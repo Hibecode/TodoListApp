@@ -1,4 +1,10 @@
 package com.example.todolistapp.ui
 
-class TodoAdapter2 {
-}
+import androidx.recyclerview.widget.RecyclerView
+
+/*
+class TodoAdapter2(): RecyclerView {
+
+
+
+}*/

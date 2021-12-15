@@ -2,6 +2,7 @@ package com.example.todolistapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -37,20 +38,32 @@ class MainActivity : AppCompatActivity() {
         todorv.layoutManager = LinearLayoutManager(this)
         todorv.adapter = myAdapter
 
-        val listee = listOf(TodoEntity("No1", false))
+        val listee = mutableListOf<TodoEntity>(TodoEntity("No1", false))
 
         addbutton.setOnClickListener{
             val newText = addeT.text.toString()
             val check = false
             val newTodo = TodoEntity("rjgndrgn", check)
             viewModel.insertTodo(newTodo)
-            val liste = listOf(newTodo)
+            Toast.makeText(this, "PLEASE WORK!!", Toast.LENGTH_LONG).show()
+            //val liste = listOf(newTodo)
             //myAdapter.differ.submitList(liste)
-            /*viewModel.getAllTodos().observe(this, Observer{ it?.let{
-
-                myAdapter.submitList(it) }
+            /*viewModel.getAllTodos().observe(this, Observer{
+                it?.let{
+                    val newList: List<TodoEntity>
+                    myAdapter.submitList(it)
+                }
             })*/
+            myAdapter.submitList(listee)
 
+        }
+
+
+        fun updateList(List: MutableList<TodoEntity>?) {
+            List?.let{
+                val newList: List<TodoEntity>
+                myAdapter.submitList(it)
+            }
         }
 
 
@@ -58,4 +71,7 @@ class MainActivity : AppCompatActivity() {
 
 
     }
+
+
+
 }
