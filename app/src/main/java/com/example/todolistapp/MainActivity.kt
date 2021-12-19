@@ -18,7 +18,7 @@ import java.util.EnumSet.of
 
 class MainActivity : AppCompatActivity() {
 
-
+    lateinit var viewModel: TodoViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        val viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
+        viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
 
         val myAdapter = TodoAdapter()
         todorv.layoutManager = LinearLayoutManager(this)
@@ -44,12 +44,14 @@ class MainActivity : AppCompatActivity() {
             myAdapter.submitList(it?.toMutableList())
         })*/
 
-        /*viewModel.getAllTodos.observe(this, Observer{
+       /* viewModel.getAllTodos.observe(this, Observer{
                 it?.let{
                     val newList: List<TodoEntity>
                     myAdapter.submitList(it.toMutableList())
                 }
             })*/
+
+
 
         addbutton.setOnClickListener{
             val newText = addeT.text.toString()

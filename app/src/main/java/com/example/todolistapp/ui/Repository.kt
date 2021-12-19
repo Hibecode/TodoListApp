@@ -12,16 +12,16 @@ class Repository(private val db: TodoDatabase) {
 
     fun getTodos() = db.todoDBDao().getAllTodos()
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
+    /*@Suppress("RedundantSuspendModifier")
+    @WorkerThread*/
     suspend fun insertTodo(todo: TodoEntity) = db.todoDBDao().insertTodo(todo)
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
+    /*@Suppress("RedundantSuspendModifier")
+    @WorkerThread*/
     suspend fun deleteTodo(todo: TodoEntity) = db.todoDBDao().deleteTodo(todo)
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
+    /*@Suppress("RedundantSuspendModifier")
+    @WorkerThread*/
     suspend fun updateTodo(todo: TodoEntity) = db.todoDBDao().updateTodo(todo)
 
 }

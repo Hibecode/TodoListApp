@@ -12,15 +12,15 @@ class TodoViewModel(val repo: Repository): ViewModel() {
 
     val getAllTodos = repo.getTodos()
 
-    fun deleteTodo(todo: TodoEntity) = viewModelScope.launch/*(Dispatchers.Main)*/{
+    fun deleteTodo(todo: TodoEntity) = viewModelScope.launch(Dispatchers.Main){
         repo.deleteTodo(todo)
     }
 
-    fun insertTodo(todo: TodoEntity) = viewModelScope.launch/*(Dispatchers.Main) */{
+    fun insertTodo(todo: TodoEntity) = viewModelScope.launch(Dispatchers.Main) {
         repo.insertTodo(todo)
     }
 
-    fun updateTodo(todo: TodoEntity) = viewModelScope.launch/*(Dispatchers.Main)*/ {
+    fun updateTodo(todo: TodoEntity) = viewModelScope.launch(Dispatchers.Main) {
         repo.updateTodo(todo)
     }
 
