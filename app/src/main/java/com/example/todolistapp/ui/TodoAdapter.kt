@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistapp.R
 import com.example.todolistapp.database.TodoEntity
 
-class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAdapter.TodoDiffCallback()) {
+class TodoAdapter(private var viewModel: TodoViewModel): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAdapter.TodoDiffCallback()) {
 
 
     inner class TodoViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -37,7 +37,12 @@ class TodoAdapter(): ListAdapter<TodoEntity, TodoAdapter.TodoViewHolder>(TodoAda
         holder.apply{
             todoText.text = todoItem.title
             todoCheckBox.isChecked = todoItem.isChecked == true
+            todoDelete.setOnClickListener{
+                viewModel.deleteTodo(todoItem)
+            }
         }
+
+
 
 
       /*  setOnClickListener {

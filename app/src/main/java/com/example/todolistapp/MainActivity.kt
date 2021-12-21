@@ -34,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
 
-        val myAdapter = TodoAdapter()
+        val myAdapter = TodoAdapter(viewModel)
         todorv.layoutManager = LinearLayoutManager(this)
         todorv.adapter = myAdapter
 
