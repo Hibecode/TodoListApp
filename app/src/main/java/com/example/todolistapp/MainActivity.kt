@@ -18,21 +18,18 @@ import java.util.EnumSet.of
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var viewModel: TodoViewModel
+    //lateinit var viewModel: TodoViewModel
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-
         val database = TodoDatabase.getInstance(this)
         val repository = Repository(database)
         val factory = TodoViewModelFactory(repository)
 
-
-
-        viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
+        var viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
 
         val myAdapter = TodoAdapter(viewModel)
         todorv.layoutManager = LinearLayoutManager(this)
@@ -47,18 +44,6 @@ class MainActivity : AppCompatActivity() {
         viewModel.getAllTodos.observe(this, Observer{
             myAdapter.submitList(it?.toMutableList())
         })
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
