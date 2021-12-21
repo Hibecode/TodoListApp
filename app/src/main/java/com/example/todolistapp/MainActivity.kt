@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-        val database = TodoDatabase.getDatabase(this)
+        val database = TodoDatabase.getInstance(this)
         val repository = Repository(database)
         val factory = TodoViewModelFactory(repository)
 
@@ -38,48 +38,16 @@ class MainActivity : AppCompatActivity() {
         todorv.layoutManager = LinearLayoutManager(this)
         todorv.adapter = myAdapter
 
-
-
-       /* viewModel.getAllTodos.observe(this, Observer{
-                it?.let{
-                    val newList: List<TodoEntity>
-                    myAdapter.submitList(it.toMutableList())
-                }
-            })*/
-
-
-
         addbutton.setOnClickListener{
             val newText = addeT.text.toString()
-            val check = false
-            val newTodo = TodoEntity(newText, check)
+            val newTodo = TodoEntity(newText)
             viewModel.insertTodo(newTodo)
-
-            /*viewModel.getAllTodos().observe(this, Observer{
-                it?.let{
-                    val newList: List<TodoEntity>
-                    myAdapter.submitList(it.toMutableList())
-                }
-            })*/
-
-
-            /*viewModel.getAllTodos.observe(this, Observer{
-                myAdapter.submitList(it?.toMutableList())
-            })*/
-
-            /*Toast.makeText(this, "PLEASE WORK!!", Toast.LENGTH_SHORT).show()
-            listee.add(newTodo)
-            myAdapter.submitList(listee)
-
-            myAdapter.notifyItemInserted(myAdapter.currentList.size.plus(1))*/
-            /*myAdapter.currentList.add(TodoEntity("No5", false))
-            val newLip = myAdapter.currentList
-            myAdapter.submitList(newLip)*/
-
         }
+
         viewModel.getAllTodos.observe(this, Observer{
             myAdapter.submitList(it?.toMutableList())
         })
+
 
 
 

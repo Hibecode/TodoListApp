@@ -17,9 +17,9 @@ class TodoAdapter(private var viewModel: TodoViewModel): ListAdapter<TodoEntity,
 
 
     inner class TodoViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        val todoText = view.findViewById<TextView>(R.id.todoTv)
-        val todoCheckBox = view.findViewById<CheckBox>(R.id.todoCb)
-        val todoDelete = view.findViewById<ImageView>(R.id.todoDel)
+        val todoText: TextView = view.findViewById(R.id.todoTv)
+        val todoCheckBox: CheckBox = view.findViewById(R.id.todoCb)
+        val todoDelete: ImageView = view.findViewById(R.id.todoDel)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoViewHolder {
@@ -27,8 +27,6 @@ class TodoAdapter(private var viewModel: TodoViewModel): ListAdapter<TodoEntity,
 
         return TodoViewHolder(view)
     }
-
-
 
 
     override fun onBindViewHolder(holder: TodoViewHolder, position: Int) {
@@ -47,24 +45,9 @@ class TodoAdapter(private var viewModel: TodoViewModel): ListAdapter<TodoEntity,
         }
 
 
-
-
-      /*  setOnClickListener {
-            onItemClickListener?.let{ it(todoItem)}
-        }*/
-
-
     }
-    //val differ = AsyncListDiffer(this, TodoDiffCallback)
-
-
-    /*fun submitListt(list: MutableList<TodoEntity>) {
-        return differ.submitList(list)
-    }*/
-
 
    class TodoDiffCallback: DiffUtil.ItemCallback<TodoEntity>() {
-
 
             override fun areItemsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
                 return oldItem.id == newItem.id
@@ -74,32 +57,4 @@ class TodoAdapter(private var viewModel: TodoViewModel): ListAdapter<TodoEntity,
                 return oldItem == newItem
             }
     }
-
-
-    /*override fun submitList(list: MutableList<TodoEntity>?) {
-        super.submitList(list?.let{ArrayList<TodoEntity>(it)})
-    }*/
-
-    /*private val DiffCallBack = object:  DiffUtil.ItemCallback<TodoEntity>() {
-
-
-        override fun areItemsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: TodoEntity, newItem: TodoEntity): Boolean {
-            return oldItem == newItem
-        }
-    }*/
-
-
-   /* private var onItemClickListener: ((TodoEntity) -> Unit)? = null
-
-    fun setOnClickListener(listener: (TodoEntity) -> Unit) {
-        onItemClickListener = listener
-    }*/
-
-
-
-
 }
