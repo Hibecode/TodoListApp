@@ -40,6 +40,10 @@ class TodoAdapter(private var viewModel: TodoViewModel): ListAdapter<TodoEntity,
             todoDelete.setOnClickListener{
                 viewModel.deleteTodo(todoItem)
             }
+            todoCheckBox.setOnClickListener{
+                todoItem.isChecked = !todoItem.isChecked
+                viewModel.updateTodo(todoItem)
+            }
         }
 
 

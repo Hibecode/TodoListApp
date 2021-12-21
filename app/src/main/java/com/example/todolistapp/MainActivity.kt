@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
         todorv.layoutManager = LinearLayoutManager(this)
         todorv.adapter = myAdapter
 
-        val listee = mutableListOf<TodoEntity>(TodoEntity("No1", false), TodoEntity("No2", false))
-
 
 
        /* viewModel.getAllTodos.observe(this, Observer{
@@ -86,21 +84,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        testbutton.setOnClickListener{
-            val newText = addeT.text.toString()
-            val check = false
-            val newTodo = TodoEntity(newText, check)
-            listee.add(newTodo)
-        }
 
 
 
-        fun updateList(List: MutableList<TodoEntity>?) {
-            List?.let{
-                val newList: List<TodoEntity>
-                myAdapter.submitList(it)
-            }
-        }
+
 
 
 
