@@ -45,7 +45,7 @@ abstract class TodoDatabase(): RoomDatabase() {
 
 
 
-@Database(entities = [TodoEntity::class], version = 1)
+@Database(entities = [TodoEntity::class], version = 1, exportSchema = false)
 abstract class TodoDatabase : RoomDatabase() {
 
     abstract  fun todoDBDao(): TodoDAO
