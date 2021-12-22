@@ -2,19 +2,16 @@ package com.example.todolistapp
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.todolistapp.database.TodoDatabase
 import com.example.todolistapp.database.TodoEntity
-import com.example.todolistapp.ui.Repository
+import com.example.todolistapp.database.Repository
 import com.example.todolistapp.ui.TodoAdapter
 import com.example.todolistapp.ui.TodoViewModel
 import com.example.todolistapp.ui.TodoViewModelFactory
 import kotlinx.android.synthetic.main.activity_main.*
-import java.util.EnumSet.of
 
 class MainActivity : AppCompatActivity() {
 

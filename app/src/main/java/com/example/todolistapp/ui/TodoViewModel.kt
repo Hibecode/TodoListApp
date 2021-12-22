@@ -2,11 +2,10 @@ package com.example.todolistapp.ui
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.todolistapp.database.Repository
 import com.example.todolistapp.database.TodoEntity
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.w3c.dom.Entity
 
 class TodoViewModel(val repo: Repository): ViewModel() {
 
