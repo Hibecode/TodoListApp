@@ -36,6 +36,7 @@ class MainActivity : AppCompatActivity() {
             val newText = addeT.text.toString()
             val newTodo = TodoEntity(newText)
             viewModel.insertTodo(newTodo)
+            addeT.text = null
         }
 
         viewModel.getAllTodos.observe(this, Observer{
